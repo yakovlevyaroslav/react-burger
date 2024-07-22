@@ -1,0 +1,63 @@
+@import-normalize;
+
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: 'JetBrainsMono', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-primary-color);
+  background-color: var(--background-alt);
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+a, button {
+  color: white;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  max-width: 1260px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 5px;
+}
+
+/* Fonts */
+@font-face {
+  font-family: 'Iceland';
+  font-weight: 400;
+  font-style: normal;
+  src: url("./fonts/Iceland-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  font-weight: 400;
+  font-style: normal;
+  src: url("./fonts/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  font-weight: 700;
+  font-style: normal;
+  src: url("./fonts/JetBrainsMono-Bold.woff2") format("woff2");
+}

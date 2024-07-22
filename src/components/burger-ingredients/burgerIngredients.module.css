@@ -1,0 +1,24 @@
+.burger_ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 600px;
+  overflow: scroll;
+  max-height: 720px;
+}
+
+.burger_ingredients__item {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  position: relative;
+}
+
+.burger_ingredients__price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.burger_ingredients__name {
+  text-align: center;
+}
