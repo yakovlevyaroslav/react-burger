@@ -50,7 +50,7 @@ class BurgerConstructor extends React.Component {
     const totalPrice = this.calculateTotalPrice();
 
     return (
-      <div className={`p-4`} style={{display: 'flex', flexDirection: 'column'}}>
+      <div className={`${burgerConstructorStyles.burger_constructor} p-4`}>
         <ul className={`${burgerConstructorStyles.burger_constructor} mt-25 mb-10`}>
           {buns[0]}
           {otherIngredients.length > 0 && (

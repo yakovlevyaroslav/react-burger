@@ -22,3 +22,11 @@
 .burger_ingredients__name {
   text-align: center;
 }
+
+.burger_ingredients__tabs {
+  display: flex;
+}
+
+.burger_ingredients__wrapper {
+  width: 100%;
+}

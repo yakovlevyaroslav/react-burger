@@ -9,7 +9,7 @@ function Tabs() {
   const [current, setCurrent] = React.useState('one')
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div className={`${burgerIngredientsStyles.burger_ingredients__tabs}`}>
       <Tab value="one" active={current === 'one'} onClick={setCurrent}>
         Булки
       </Tab>
@@ -94,7 +94,7 @@ class BurgerIngredients extends React.Component {
         <Tabs />
         <div className={`${burgerIngredientsStyles.burger_ingredients} mt-10`}>
           {buns.length > 0 && (
-            <div style={{width: '100%'}}>
+            <div className={`${burgerIngredientsStyles.burger_ingredients__wrapper}`}>
               <p className='text text_type_main-medium'>
                 Булки
               </p>
@@ -104,7 +104,7 @@ class BurgerIngredients extends React.Component {
             </div>
           )}
           {sauces.length > 0 && (
-            <div style={{width: '100%'}}>
+            <div className={`${burgerIngredientsStyles.burger_ingredients__wrapper}`}>
               <p className='text text_type_main-medium'>
                 Соусы
               </p>
@@ -114,7 +114,7 @@ class BurgerIngredients extends React.Component {
             </div>
           )}
           {mains.length > 0 && (
-            <div style={{width: '100%'}}>
+            <div className={`${burgerIngredientsStyles.burger_ingredients__wrapper}`}>
               <p className='text text_type_main-medium'>
                 Начинки
               </p>
