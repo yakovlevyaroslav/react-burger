@@ -34,9 +34,6 @@ bower_components
 dist
 build
 
-# Static
-public/static
-
 # Docs
 docs
 
@@ -70,7 +67,6 @@ out
 
 # Gatsby files
 .cache/
-public
 
 # Compiled Docusaurus files
 .docusaurus/
