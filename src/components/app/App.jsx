@@ -10,10 +10,10 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <AppHeader></AppHeader>
+        <AppHeader />
         <main className={`${indexStyles.container} ${appStyles.main}`}>
-          <BurgerIngredients></BurgerIngredients>
-          <BurgerConstructor></BurgerConstructor>
+          <BurgerIngredients />
+          <BurgerConstructor />
         </main>
       </>
     );
