@@ -4,6 +4,7 @@ import { Tab, Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger
 import {dataBurgerStatic} from '../../utils/data';
 
 import burgerIngredientsStyles from './burgerIngredients.module.css';
+import appStyles from '../app/app.module.css';
 
 function Tabs() {
   const [current, setCurrent] = React.useState('one')
@@ -87,7 +88,7 @@ class BurgerIngredients extends React.Component {
         ));
 
     return (
-      <div className={`mr-10`}>
+      <div className={`${appStyles.main_block} mr-10`}>
         <h1 className={`text text_type_main-large mt-10 mb-5`}>
           Соберите бургер
         </h1>

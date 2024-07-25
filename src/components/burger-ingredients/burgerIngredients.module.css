@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 600px;
-  overflow: scroll;
+  overflow-y: scroll;
   max-height: 720px;
 }
 
@@ -25,6 +25,7 @@
 
 .burger_ingredients__tabs {
   display: flex;
+  overflow-x: scroll;
 }
 
 .burger_ingredients__wrapper {

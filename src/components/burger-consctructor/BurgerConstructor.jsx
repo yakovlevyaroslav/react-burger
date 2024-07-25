@@ -4,6 +4,7 @@ import { ConstructorElement, CurrencyIcon, DragIcon, Button } from '@ya.praktiku
 import { dataBurgerStatic } from '../../utils/data';
 
 import burgerConstructorStyles from './burgerConstructor.module.css';
+import appStyles from '../app/app.module.css';
 
 class BurgerConstructor extends React.Component {
   state = {
@@ -18,28 +19,13 @@ class BurgerConstructor extends React.Component {
   render() {
     const { burgers } = this.state;
 
-    const buns = burgers
-      .filter(data => data.type === 'bun')
-      .map(data => (
-        <li key={data._id} className={`${burgerConstructorStyles.burger_constructor__item} pl-10`}>
-          <ConstructorElement
-            type={data.type}
-            isLocked={true}
-            text={data.name}
-            price={data.price}
-            thumbnail={data.image}
-          />
-        </li>
-      ));
-
+    const buns = burgers.filter(data => data.type === 'bun');
     const otherIngredients = burgers
       .filter(data => data.type !== 'bun')
       .map(data => (
         <li key={data._id} className={`${burgerConstructorStyles.burger_constructor__item}`}>
           <DragIcon />
           <ConstructorElement
-            type={data.type}
-            isLocked={false}
             text={data.name}
             price={data.price}
             thumbnail={data.image}
@@ -50,15 +36,39 @@ class BurgerConstructor extends React.Component {
     const totalPrice = this.calculateTotalPrice();
 
     return (
-      <div className={`${burgerConstructorStyles.burger_constructor} p-4`}>
+      <div className={`${appStyles.main_block} ${burgerConstructorStyles.burger_constructor} p-4`}>
         <ul className={`${burgerConstructorStyles.burger_constructor} mt-25 mb-10`}>
-          {buns[0]}
+
+          {buns.length > 0 && (
+            <li key={`${buns[0]._id}-top`} className={`${burgerConstructorStyles.burger_ingredients__item} pl-8`}>
+              <ConstructorElement
+                type='top'
+                isLocked={true}
+                text={`${buns[0].name} (верх)`}
+                price={buns[0].price}
+                thumbnail={buns[0].image}
+              />
+            </li>
+          )}
+
           {otherIngredients.length > 0 && (
             <div className={`${burgerConstructorStyles.burger_constructor} ${burgerConstructorStyles.burger_constructor__scroll}`}>
               {otherIngredients}
             </div>
           )}
-          {buns.length > 1 && buns[1]}
+          
+          {buns.length > 0 && (
+            <li key={`${buns[0]._id}-bottom`} className={`${burgerConstructorStyles.burger_ingredients__item} pl-8`}>
+              <ConstructorElement
+                type='bottom'
+                isLocked={true}
+                text={`${buns[0].name} (низ)`}
+                price={buns[0].price}
+                thumbnail={buns[0].image}
+              />
+            </li>
+          )}
+
         </ul>
         <div className={`${burgerConstructorStyles.burger_constructor__total} mb-10`}>
           <p className={`${burgerConstructorStyles['burger_constructor__total-price']} text text_type_digits-medium pr-2`}>
