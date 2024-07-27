@@ -1,6 +1,6 @@
 import orderDetailsStyles from  './orderDetails.module.css';
 
-function orderDetails() {
+function OrderDetails() {
   return (
     <div className={`${orderDetailsStyles['order-details']} pb-20`}>
       <p className={`text text_type_digits-large mb-8`}>
@@ -20,4 +20,4 @@ function orderDetails() {
   )
 }
 
-export default orderDetails;
+export default OrderDetails;

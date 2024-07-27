@@ -32,7 +32,7 @@ function BurgerConstructor({propIngredients, openModal}) {
       <ul className={`${burgerConstructorStyles['burger-constructor']} mt-25 mb-10`}>
 
         {buns.length > 0 && (
-          <li key={`${buns[0]._id}-top`} className={`${burgerConstructorStyles['burger-constructor_item']} pl-8`}>
+          <li key={`${buns[0]._id}-top`} className={`${burgerConstructorStyles['burger-constructor_item']} pl-10`}>
             <ConstructorElement
               type='top'
               isLocked={true}
@@ -50,7 +50,7 @@ function BurgerConstructor({propIngredients, openModal}) {
         )}
         
         {buns.length > 0 && (
-          <li key={`${buns[0]._id}-bottom`} className={`${burgerConstructorStyles['burger-constructor_item']} pl-8`}>
+          <li key={`${buns[0]._id}-bottom`} className={`${burgerConstructorStyles['burger-constructor_item']} pl-10`}>
             <ConstructorElement
               type='bottom'
               isLocked={true}
@@ -67,7 +67,7 @@ function BurgerConstructor({propIngredients, openModal}) {
           {totalPrice}
         </p>
         <CurrencyIcon type="primary" />
-        <Button onClick={() => openModal('order')} htmlType="button" type="primary" size="medium" extraClass="ml-10">
+        <Button onClick={() => openModal()} htmlType="button" type="primary" size="medium" extraClass="ml-10">
           Оформить заказ
         </Button>
       </div>

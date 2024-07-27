@@ -4,7 +4,8 @@ import AppHeader from '../app-header/AppHeader';
 import BurgerConstructor from '../burger-consctructor/BurgerConstructor';
 import BurgerIngredients from '../burger-ingredients/BurgerIngredients';
 import Modal from '../modal/Modal';
-import ModalOverlay from '../modal-overlay/ModalOverlay';
+import IngredientDetails from '../ingredient-details/IngredientDetails';
+import OrderDetails from '../order-details/OrderDetails';
 import LoaderComponent from '../loader-component/LoaderComponent';
 import ErrorComponent from '../error-component/ErrorComponent';
 
@@ -41,24 +42,19 @@ function App() {
   // Модальные окна
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedIngredient, setSelectedIngredient] = useState(null);
-  const [typeModal, setTypeModal] = useState('')
 
   const openModal = (data) => {
-    if (data !== 'order') {
-      setTypeModal('ingredient')
+    if (!!data) {
       setSelectedIngredient(data);
     } else {
-      setTypeModal('order')
-      setSelectedIngredient([]);
+      setSelectedIngredient(null);
     }
     setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setSelectedIngredient(null);
     setIsModalOpen(false);
-    document.body.style.overflow = 'auto';
   };
 
   // Отображение загрузки или ошибки
@@ -76,10 +72,19 @@ function App() {
         <BurgerIngredients openModal={openModal} propIngredients={ingredients} />
         <BurgerConstructor openModal={openModal} propIngredients={ingredients} />
       </main>
-      {isModalOpen && 
+      {isModalOpen &&
         <>
-          <Modal type={typeModal} onClose={closeModal} propIngredient={selectedIngredient} />
-          <ModalOverlay onClose={closeModal}/>
+          {
+            selectedIngredient !== null
+            ?
+            <Modal title={'Детали заказа'} onClose={closeModal} propIngredient={selectedIngredient}>
+              <IngredientDetails propIngredient={selectedIngredient} />
+            </Modal>
+            :
+            <Modal title={''} onClose={closeModal} propIngredient={selectedIngredient}>
+              <OrderDetails />
+            </Modal>
+          }
         </>
       }
     </>
