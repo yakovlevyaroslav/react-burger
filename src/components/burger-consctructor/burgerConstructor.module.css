@@ -1,26 +1,30 @@
-.burger_constructor {
+.burger-constructor {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.burger_constructor__item {
+.burger-constructor_item {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.burger_constructor__scroll {
+.burger-constructor_item > svg {
+  flex-shrink: 0;
+}
+
+.burger-constructor_scroll {
   overflow-y: scroll;
   max-height: 464px;
 }
 
-.burger_constructor__total {
+.burger-constructor_total {
   display: flex;
   align-items: center;
   margin-left: auto;
 }
 
-.burger_constructor__total-price {
+.burger-constructor_total-price {
   font-family: 'Iceland', sans-serif;
 }

@@ -1,0 +1,15 @@
+.order-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-details__image {
+  background-image: url('../../images/order-status_check.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 120px;
+  height: 120px;
+}
