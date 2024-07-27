@@ -1,0 +1,8 @@
+.loader-message {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto 10px;
+  color: var(--colors-interface-accent);
+}
