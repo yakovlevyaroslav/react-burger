@@ -1,8 +1,9 @@
 import {createPortal} from 'react-dom';
+import PropTypes from 'prop-types';
+import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
 import IngredientDetails from '../ingredient-details/IngredientDetails';
 import OrderDetails from '../order-details/OrderDetails';
-import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
 import modalStyles from  './modal.module.css';
 
@@ -39,5 +40,11 @@ function Modal({onClose, propIngredient, type}) {
     modalElement
   )
 }
+
+Modal.propTypes = {
+  propIngredients: PropTypes.array,
+  type: PropTypes.string,
+  onClose: PropTypes.func
+}; 
 
 export default Modal;

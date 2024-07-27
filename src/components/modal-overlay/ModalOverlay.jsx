@@ -1,5 +1,7 @@
 import {useEffect} from 'react';
 import {createPortal} from 'react-dom';
+import PropTypes from 'prop-types';
+
 import modalStyles from  './modalOverlay.module.css';
 
 const modalOverlay = document.getElementById('modal-overlay');
@@ -25,5 +27,9 @@ function ModalOverlay({onClose}) {
     modalOverlay
   )
 }
+
+ModalOverlay.propTypes = {
+  onClose: PropTypes.func
+}; 
 
 export default ModalOverlay;

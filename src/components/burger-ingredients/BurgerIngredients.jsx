@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Tab, Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 
 import burgerIngredientsStyles from './burgerIngredients.module.css';
 import appStyles from '../app/app.module.css';
@@ -125,5 +126,10 @@ function BurgerIngredients({propIngredients, openModal}) {
     </div>
   )
 }
+
+BurgerIngredients.propTypes = {
+  propIngredients: PropTypes.array,
+  openModal: PropTypes.func
+}; 
 
 export default BurgerIngredients;
