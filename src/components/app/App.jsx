@@ -1,4 +1,11 @@
-import {useState, useEffect} from 'react';
+import appStyles from './app.module.css';
+import indexStyles from '../../index.module.css';
+
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
 
 import AppHeader from '../app-header/AppHeader';
 import BurgerConstructor from '../burger-consctructor/BurgerConstructor';
@@ -9,51 +16,47 @@ import OrderDetails from '../order-details/OrderDetails';
 import LoaderComponent from '../loader-component/LoaderComponent';
 import ErrorComponent from '../error-component/ErrorComponent';
 
-import appStyles from './app.module.css';
-import indexStyles from '../../index.module.css';
+import { fetchIngredients } from '../../services/ingredients/actions';
+import { orderInfo } from '../../services/order/actions';
+import { postData, URL_ORDER } from '../../utils/api';
+import { ingredientInfo } from '../../services/ingredient/actions';
+
 
 function App() {
-  // Полученные данных об ингридиентах
-  const [ingredients, setIngredients] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const URL_INGREDIENTS = 'https://norma.nomoreparties.space/api/ingredients'
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector(state => state.ingredients)
+  const burger = useSelector(state => state.burger.burger)
+  const ingredient = useSelector(state => state.ingredient.ingredient)
 
   useEffect(() => {
-    const fetchBurgerIngredients = async () => {
-      try {
-        const response = await fetch(URL_INGREDIENTS);
-        if (!response.ok) {
-          throw new Error(`Ошибка! статус: ${response.status}`);
-        }
-        const data = await response.json();
-        setIngredients(data.data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBurgerIngredients();
-  }, []);
-
+      dispatch(fetchIngredients());
+  }, [dispatch]);
 
   // Модальные окна
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedIngredient, setSelectedIngredient] = useState(null);
 
   const openModal = (data) => {
     if (!!data) {
-      setSelectedIngredient(data);
+      dispatch(ingredientInfo(data))
     } else {
-      setSelectedIngredient(null);
+      dispatch(ingredientInfo([]))
+      const burgerIngredientsId = burger.map(data => data._id)
+      const orderIngredientsData = { ingredients: [...burgerIngredientsId, burgerIngredientsId[0]] };
+
+      postData(URL_ORDER, orderIngredientsData)
+        .then(data => {
+          dispatch(orderInfo(data))
+        })
+        .catch(error => {
+          console.error('Error:', error)
+        });
     }
+
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    setSelectedIngredient(null);
+    dispatch(ingredientInfo([]))
     setIsModalOpen(false);
   };
 
@@ -68,20 +71,22 @@ function App() {
   return (
     <>
       <AppHeader />
-      <main className={`${indexStyles.container} ${appStyles.main}`}>
-        <BurgerIngredients openModal={openModal} propIngredients={ingredients} />
-        <BurgerConstructor openModal={openModal} propIngredients={ingredients} />
-      </main>
+      <DndProvider backend={HTML5Backend}>
+        <main className={`${indexStyles.container} ${appStyles.main}`}>
+          <BurgerIngredients openModal={openModal} />
+          <BurgerConstructor openModal={openModal} />
+        </main>
+      </DndProvider>
       {isModalOpen &&
         <>
           {
-            selectedIngredient !== null
+            Object.keys(ingredient[0]).length > 0
             ?
-            <Modal title={'Детали заказа'} onClose={closeModal} propIngredient={selectedIngredient}>
-              <IngredientDetails propIngredient={selectedIngredient} />
+            <Modal title={'Детали заказа'} onClose={closeModal}>
+              <IngredientDetails />
             </Modal>
             :
-            <Modal title={''} onClose={closeModal} propIngredient={selectedIngredient}>
+            <Modal title={''} onClose={closeModal}>
               <OrderDetails />
             </Modal>
           }

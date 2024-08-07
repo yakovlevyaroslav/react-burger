@@ -2,8 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 600px;
-  overflow-y: scroll;
   max-height: 720px;
+}
+
+.burger-ingredients__scroll {
+  overflow-y: scroll;
 }
 
 .burger-ingredients_list {
@@ -12,6 +15,14 @@
 }
 
 .burger-ingredients_item {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+.burger-ingredients_item--dragging {
   display: flex;
   flex-direction: column;
   width: 50%;
