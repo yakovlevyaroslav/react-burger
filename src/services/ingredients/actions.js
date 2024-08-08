@@ -1,5 +1,6 @@
 import {
-  URL_INGREDIENTS
+  BASE_URL,
+  requestFunc
 } from "../../utils/api";
 
 export const FETCH_INGREDIENTS_REQUEST = 'FETCH_INGREDIENTS_REQUEST';
@@ -22,12 +23,12 @@ export const fetchIngredientsFailure = error => ({
 
 export const fetchIngredients = () => {
   return dispatch => {
-    dispatch(fetchIngredientsRequest());
-    fetch(URL_INGREDIENTS)
-      .then(response => response.json())
-      .then(data => {
-        dispatch(fetchIngredientsSuccess(data.data)); // Передайте массив в Redux
-      })
-      .catch(error => dispatch(fetchIngredientsFailure(error.message)));
+    dispatch(fetchIngredientsRequest())
+    requestFunc(`${BASE_URL}/ingredients`)
+    .then(data => {
+      dispatch(fetchIngredientsSuccess(data.data));
+    })
+    .catch(error => dispatch(fetchIngredientsFailure(error.message)))
   };
 };
+

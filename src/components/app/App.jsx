@@ -17,8 +17,7 @@ import LoaderComponent from '../loader-component/LoaderComponent';
 import ErrorComponent from '../error-component/ErrorComponent';
 
 import { fetchIngredients } from '../../services/ingredients/actions';
-import { orderInfo } from '../../services/order/actions';
-import { postData, URL_ORDER } from '../../utils/api';
+import { postBurgerData } from '../../services/order/actions';
 import { ingredientInfo } from '../../services/ingredient/actions';
 
 
@@ -40,16 +39,11 @@ function App() {
       dispatch(ingredientInfo(data))
     } else {
       dispatch(ingredientInfo([]))
+      
       const burgerIngredientsId = burger.map(data => data._id)
       const orderIngredientsData = { ingredients: [...burgerIngredientsId, burgerIngredientsId[0]] };
 
-      postData(URL_ORDER, orderIngredientsData)
-        .then(data => {
-          dispatch(orderInfo(data))
-        })
-        .catch(error => {
-          console.error('Error:', error)
-        });
+      dispatch(postBurgerData(orderIngredientsData))
     }
 
     setIsModalOpen(true);

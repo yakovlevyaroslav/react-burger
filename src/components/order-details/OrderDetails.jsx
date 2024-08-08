@@ -3,7 +3,7 @@ import orderDetailsStyles from  './orderDetails.module.css';
 
 function OrderDetails() {
   const orderResponce = useSelector(state => state.order.order)
-  const number = orderResponce.order?.number;
+  const number = orderResponce?.order?.number;
 
   return (
     <div className={`${orderDetailsStyles['order-details']} pb-20`}>
