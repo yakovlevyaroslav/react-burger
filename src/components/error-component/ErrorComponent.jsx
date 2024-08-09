@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import errorComponentStyles from './errorComponent.module.css';
 
-function ErrorComponent({children}) {
+function ErrorComponent({ children }) {
   return (
     <div className={`${errorComponentStyles['error-message']}`}>
       {children}

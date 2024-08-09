@@ -2,12 +2,24 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
+}
+
+.burger-constructor_block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .burger-constructor_item {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
+}
+
+.burger-constructor_item--dragging {
+  opacity: .5;
 }
 
 .burger-constructor_item > svg {
@@ -27,4 +39,38 @@
 
 .burger-constructor_total-price {
   font-family: 'Iceland', sans-serif;
+}
+
+
+.burger-constructor_item--empty {
+  padding: 16px 24px;
+  border-radius: var(--common-border-radius-s);
+  background: var(--background-element);
+  max-width: 533px;
+  width: 100%;
+  min-height: 80px;
+  font-family: Jet Brains Mono;
+  font-size: 16px;
+  line-height: 24px;
+  color: #f2f2f3;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
+
+.burger-constructor_item--empty-top {
+  border-radius: var(--top-constructor-item-border-radius);
+}
+
+.burger-constructor_item--empty-bot {
+  border-radius: var(--bottom-constructor-item-border-radius);
+}
+
+.burger-constructor_item--empty-active {
+  border: 1px solid var(--colors-interface-accent);
+}
+
+.burger-constructor_button--inactive {
+  opacity: .5;
+  cursor: none;
+  pointer-events: none;
 }
