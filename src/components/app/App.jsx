@@ -20,7 +20,6 @@ import { fetchIngredients } from '../../services/ingredients/actions';
 import { postBurgerData } from '../../services/order/actions';
 import { ingredientInfo } from '../../services/ingredient/actions';
 
-
 function App() {
   const dispatch = useDispatch();
   const { loading, error } = useSelector(state => state.ingredients)

@@ -1,4 +1,10 @@
-import { ADD_INGREDIENT, REMOVE_INGREDIENT, REPLACE_BUN, MOVE_ITEM } from './actions'
+import { 
+  ADD_INGREDIENT, 
+  REMOVE_INGREDIENT, 
+  REPLACE_BUN, 
+  CLEAR_INGREDIENT_LIST,
+  MOVE_ITEM,
+} from './actions'
 
 const initialState = {
   burger: []
@@ -37,6 +43,11 @@ export const burgerReducer = (state = initialState, action) => {
       return {
         ...state,
         burger: state.burger.filter((_, index) => index !== action.payload)
+      };
+    case CLEAR_INGREDIENT_LIST:
+      return {
+        ...state,
+        burger: []
       };
     case MOVE_ITEM:
       const { fromIndex, toIndex } = action.payload;

@@ -62,23 +62,23 @@ function BurgerConstructor({ openModal }) {
             Выберите булки
           </li>
         )}
-        
+
         <div className={`${burgerConstructorStyles['burger-constructor_block']} ${burgerConstructorStyles['burger-constructor_scroll']}`}>
           {otherIngredients.length > 0 ? (
-            otherIngredients.map((data, index) => (
-              <ConstructorItem key={`${data._id}-${index}`} id={data._id} index={index} data={data} />
-            ))
-          ) : (
-            <li className={`
-              ${burgerConstructorStyles['burger-constructor_item']} 
-              ${burgerConstructorStyles['burger-constructor_item--empty']} 
-              ${burgerConstructorStyles['burger-constructor_item--empty-mid']}
-              ml-10
-              ${isOver ? burgerConstructorStyles['burger-constructor_item--empty-active'] : ''}
-            `}>
-              Выберите начинку
-            </li>
-          )}
+              otherIngredients.map((data, index) => (
+                <ConstructorItem key={`${data.uniqueId}`} id={data._id} index={index} data={data} />
+              ))
+            ) : (
+              <li className={`
+                ${burgerConstructorStyles['burger-constructor_item']} 
+                ${burgerConstructorStyles['burger-constructor_item--empty']} 
+                ${burgerConstructorStyles['burger-constructor_item--empty-mid']}
+                ml-10
+                ${isOver ? burgerConstructorStyles['burger-constructor_item--empty-active'] : ''}
+              `}>
+                Выберите начинку
+              </li>
+            )}
         </div>
 
         {buns.length > 0 ? (
